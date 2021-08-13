@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:sqlite:d:\\db.sqlite
+    username:
+    password:
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: com.rabbit.fundservice.sqlite.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
