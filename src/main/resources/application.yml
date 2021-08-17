@@ -10,8 +10,9 @@ spring:
       ddl-auto: update
     show-sql: true
 tiantian:
-  "AppVersion": "6.4.6",
-  "version": "6.4.6",
-  "deviceid": "1",
-  "plat": "Android",
+  "Api": "https://fundmobapi.eastmoney.com"
+  "AppVersion": "6.4.6"
+  "version": "6.4.6"
+  "deviceid": "1"
+  "plat": "Android"
   "product": "EFund"

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class TianTianConfig {
+    public String Api;
     public String AppVersion;
     public String version;
     public String deviceid;
