@@ -1,5 +1,7 @@
 package com.rabbit.fundservice.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +35,12 @@ public class WebManger {
 
         }
         return url;
+    }
+
+    @Bean
+    public ObjectMapper getObjectMapper() {
+        var instance = new ObjectMapper();
+        return instance;
     }
 
     @Bean
