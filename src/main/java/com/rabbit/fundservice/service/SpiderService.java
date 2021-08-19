@@ -1,5 +1,6 @@
 package com.rabbit.fundservice.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.rabbit.fundservice.config.TianTianConfig;
 import com.rabbit.fundservice.data.FundMNAssetAllocationNew;
@@ -40,8 +41,9 @@ public class SpiderService {
    */
   public FundMNDetailInformation getFundMNDetailInformation(String code) {
     String fun = "/FundMNewApi/FundMNDetailInformation";
-    JsonNode jsonNode = getTiantianData(fun, code);
-    return JsonManager.toObject(jsonNode, FundMNDetailInformation.class);
+    FundMNDetailInformation rst = getTiantianData(fun, code, new TypeReference<FundMNDetailInformation>() {
+    });
+    return rst;
   }
 
   /**
@@ -58,9 +60,10 @@ public class SpiderService {
    */
   public FundMNAssetAllocationNew getFundMNAssetAllocationNew(String code) {
     String fun = "/FundMNewApi/FundMNAssetAllocationNew";
-    JsonNode jsonNode = getTiantianData(fun, code);
-    ArrayList<FundMNAssetAllocationNew> rst = JsonManager.toObject(jsonNode, ArrayList.class, FundMNAssetAllocationNew.class);
-    Optional<FundMNAssetAllocationNew> first = rst.stream().findFirst();
+    TypeReference<ArrayList<FundMNAssetAllocationNew>> typeReference = new TypeReference<ArrayList<FundMNAssetAllocationNew>>() {
+    };
+    ArrayList<FundMNAssetAllocationNew> lst = getTiantianData(fun, code, typeReference);
+    Optional<FundMNAssetAllocationNew> first = lst.stream().findFirst();
     FundMNAssetAllocationNew result = first.orElse(new FundMNAssetAllocationNew());
     return result;
   }
@@ -70,8 +73,9 @@ public class SpiderService {
    */
   public FundMNInverstPosition GetFundMNInverstPosition(String code) {
     String fun = "/FundMNewApi/FundMNInverstPosition";
-    JsonNode jsonNode = getTiantianData(fun, code);
-    FundMNInverstPosition rst = JsonManager.toObject(jsonNode, ArrayList.class, FundMNInverstPosition.class);
+    TypeReference<FundMNInverstPosition> type = new TypeReference<FundMNInverstPosition>() {
+    };
+    FundMNInverstPosition rst = getTiantianData(fun, code, type);
     Map<String, Fundstock> fundDict = rst.fundStocks.stream()
         .collect(Collectors.toMap(x -> x.getGpdm(), y -> y));
     Map<String, Fundbood> boodsDict = rst.fundboods.stream()
@@ -101,14 +105,15 @@ public class SpiderService {
   /**
    * 获取返现类型转换
    */
-  private JsonNode getTiantianData(String path, String code) {
+  private <T> T getTiantianData(String path, String code, TypeReference<?> type) {
     try {
       Map<String, String> query = getQueryMap(code);
       String queryString = query.entrySet().stream().map(x -> x.getKey() + "=" + x.getValue())
           .collect(Collectors.joining("&"));
       String url = tianConfig.Host + path + "?" + queryString;
       String json = webManger.getString(url);
-      return JsonManager.toJsonNode(json, "Datas");
+      JsonNode jsonNode = JsonManager.toJsonNode(json, "Datas");
+      return (T) JsonManager.toObject(jsonNode, type);
     } catch (Exception ex) {
       return null;
     }

@@ -2,6 +2,7 @@ package com.rabbit.fundservice.service;
 
 import com.rabbit.fundservice.data.FundMNAssetAllocationNew;
 import com.rabbit.fundservice.data.FundMNDetailInformation;
+import com.rabbit.fundservice.data.FundMNInverstPosition;
 import com.rabbit.fundservice.data.FundMNUniqueInfo;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
@@ -39,5 +40,11 @@ class SpiderServiceTest {
   void getFundMNAssetAllocationNew() {
     FundMNAssetAllocationNew allocationNew = spiderService
         .getFundMNAssetAllocationNew(code);
+  }
+
+  @Test
+  void getFundMNInverstPosition() {
+    FundMNInverstPosition fundMNInverstPosition = spiderService
+        .GetFundMNInverstPosition(code);
   }
 }
