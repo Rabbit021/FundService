@@ -2,14 +2,11 @@ package com.rabbit.fundservice.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 /**
  * @author wangheng
@@ -20,14 +17,14 @@ import java.util.Map;
 
 public class WebManger {
     private static final Logger logger = LoggerFactory.getLogger(WebManger.class);
-    @Autowired
-    RestTemplate restTemplate;
+    final RestTemplate restTemplate;
+
+    public WebManger(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     /**
      * get请求天天基金App数据
-     *
-     * @param url
-     * @return
      */
     public String getString(String url) {
         try {
@@ -44,9 +41,6 @@ public class WebManger {
 
     /**
      * Post请求天天基金App数据
-     *
-     * @param url
-     * @return
      */
     public String postString(String url, MultiValueMap<String, String> map) {
         try {

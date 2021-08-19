@@ -1,4 +1,4 @@
-package com.rabbit.fundservice.data;
+package com.rabbit.fundservice.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class TianTianConfig {
-    public String Api;
+    public String Host;
     public String AppVersion;
     public String version;
     public String deviceid;

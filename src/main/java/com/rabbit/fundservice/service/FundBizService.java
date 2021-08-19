@@ -19,8 +19,7 @@ public class FundBizService {
     }
 
     public List<FundItem> getFundItemList() {
-        List<FundItem> lst = fundItemRepository.findAll();
-        return lst;
+        return fundItemRepository.findAll();
     }
 
     public void saveFundItem(FundItem item) {

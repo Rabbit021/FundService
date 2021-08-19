@@ -9,10 +9,24 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+  profiles:
+    active: dev
 tiantian:
-  "Api": "https://fundmobapi.eastmoney.com"
+  "Host": "https://fundmobapi.eastmoney.com"
   "AppVersion": "6.4.6"
   "version": "6.4.6"
   "deviceid": "1"
   "plat": "Android"
   "product": "EFund"
+
+logging:
+  level:
+    root: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    path: "/logs/application-debug.log"
+    name:

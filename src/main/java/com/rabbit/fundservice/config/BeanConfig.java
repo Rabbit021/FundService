@@ -1,4 +1,4 @@
-package com.rabbit.fundservice.service;
+package com.rabbit.fundservice.config;
 
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -17,7 +17,7 @@ import java.time.Duration;
 @Configuration
 public class BeanConfig {
     @Bean
-    public ObjectMapper getObjectMapper() {
+    public  ObjectMapper getObjectMapper() {
         var instance = new ObjectMapper();
         instance.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         instance.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
@@ -26,10 +26,9 @@ public class BeanConfig {
 
     @Bean
     public RestTemplate getRestTemplate(RestTemplateBuilder builder) {
-        RestTemplate restTemplate = builder
+        return builder
                 .setConnectTimeout(Duration.ofMillis(3000))
                 .setReadTimeout(Duration.ofMillis(3000))
                 .build();
-        return restTemplate;
     }
 }

@@ -1,6 +1,5 @@
 package com.rabbit.fundservice.data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,10 +11,7 @@ public class FundMNDetailInformation {
     public String ftype;
     public Date estabdate;
     public String endnav;
-    // 管理费
-    public String mgrexp;
-    // 托管费
-    public String trustexp;
-    // 销售服务费
-    public String salesexp;
+    public String mgrexp; // 管理费
+    public String trustexp; // 托管费
+    public String salesexp; // 销售服务费
 }
