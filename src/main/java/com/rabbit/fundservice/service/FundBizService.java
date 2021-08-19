@@ -1,28 +1,40 @@
 package com.rabbit.fundservice.service;
 
 import com.rabbit.fundservice.dao.IFundItemRepository;
+import com.rabbit.fundservice.data.FundMNUniqueInfo;
 import com.rabbit.fundservice.entity.FundItem;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
- * @author wangheng
- * 基金业务层
+ * @author wangheng 基金业务层
  */
 @Service
 public class FundBizService {
-    private final IFundItemRepository fundItemRepository;
 
-    public FundBizService(IFundItemRepository fundItemRepository) {
-        this.fundItemRepository = fundItemRepository;
-    }
+  private final IFundItemRepository fundItemRepository;
+  private final SpiderService spiderService;
 
-    public List<FundItem> getFundItemList() {
-        return fundItemRepository.findAll();
-    }
+  public FundBizService(IFundItemRepository fundItemRepository, SpiderService spiderService) {
+    this.fundItemRepository = fundItemRepository;
+    this.spiderService = spiderService;
+  }
 
-    public void saveFundItem(FundItem item) {
-        fundItemRepository.save(item);
+  public List<FundItem> getFundItemList() {
+    return fundItemRepository.findAll();
+  }
+
+  public void saveFundItem(FundItem item) {
+    fundItemRepository.save(item);
+  }
+
+  public List<FundMNUniqueInfo> getFundMNUniqueInfoList(String... codes) {
+    ArrayList<FundMNUniqueInfo> uniqueInfos = new ArrayList<>();
+    for (String code : codes) {
+      FundMNUniqueInfo info = spiderService.getFundMNUniqueInfo(code);
+      uniqueInfos.add(info);
     }
+    return uniqueInfos;
+  }
 }

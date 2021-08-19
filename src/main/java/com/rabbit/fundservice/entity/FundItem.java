@@ -15,6 +15,5 @@ import java.io.Serializable;
 public class FundItem implements Serializable {
     @Id
     private String fcode;
-    @Id
     private String fname;
 }

@@ -51,9 +51,8 @@ public class SpiderService {
    */
   public FundMNUniqueInfo getFundMNUniqueInfo(String code) {
     String fun = "/FundMNewApi/FundMNUniqueInfo";
-    JsonNode jsonNode = postTianTianData(fun, code, new TypeReference<FundMNUniqueInfo>() {
+    return postTianTianData(fun, code, new TypeReference<FundMNUniqueInfo>() {
     });
-    return JsonManager.toObject(jsonNode, FundMNUniqueInfo.class);
   }
 
   /**
