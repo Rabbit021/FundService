@@ -20,8 +20,7 @@ public class FundController {
 
   @GetMapping("/getFundMNUniqueInfo")
   public List<FundMNUniqueInfo> getFundMNUniqueInfo() {
-    List<FundMNUniqueInfo> list = fundBizService.getFundMNUniqueInfoList("000248");
-    return list;
+    return fundBizService.getFundMNUniqueInfoList("000248");
   }
 }
 
