@@ -51,7 +51,8 @@ public class SpiderService {
    */
   public FundMNUniqueInfo getFundMNUniqueInfo(String code) {
     String fun = "/FundMNewApi/FundMNUniqueInfo";
-    JsonNode jsonNode = postTianTianData(fun, code);
+    JsonNode jsonNode = postTianTianData(fun, code, new TypeReference<FundMNUniqueInfo>() {
+    });
     return JsonManager.toObject(jsonNode, FundMNUniqueInfo.class);
   }
 
@@ -119,14 +120,15 @@ public class SpiderService {
     }
   }
 
-  private JsonNode postTianTianData(String path, String code) {
+  private <T> T postTianTianData(String path, String code, TypeReference<?> type) {
     try {
       Map<String, String> query = getQueryMap(code);
       MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
       query.forEach(map::add);
       String url = tianConfig.Host + path;
       String json = webManger.postString(url, map);
-      return JsonManager.toJsonNode(json, "Datas");
+      JsonNode datas = JsonManager.toJsonNode(json, "Datas");
+      return (T) JsonManager.toObject(datas, type);
     } catch (Exception exception) {
       logger.error(exception.getMessage());
       return null;
