@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "fund_item")
+@Table(name = "FundItem")
 @IdClass(FundItem.class)
 public class FundItem implements Serializable {
     @Id
