@@ -1,7 +1,7 @@
 package com.rabbit.fundservice.dao;
 
 import com.rabbit.fundservice.entity.MyFundPosition;
-import java.lang.management.MemoryUsage;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,10 +27,17 @@ public class RepositoryDao {
   }
 
   public void delPositionList(List<String> fundIs) {
-    myFundPositionRepository.deleteAllById(fundIs);
+    List<String> del = new ArrayList<>();
+    for (String id : fundIs) {
+      boolean exists = myFundPositionRepository.existsById(id);
+      if (exists) {
+        del.add(id);
+      }
+    }
+    myFundPositionRepository.deleteAllById(del);
   }
 
-  public List<MyFundPosition> queryPositionList(){
+  public List<MyFundPosition> queryPositionList() {
     List<MyFundPosition> all = myFundPositionRepository.findAll();
     return all;
   }
