@@ -1,10 +1,13 @@
 package com.rabbit.fundservice.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.rabbit.fundservice.common.JacksonCriteria;
 import com.rabbit.fundservice.common.MapResponse;
 import com.rabbit.fundservice.dao.RepositoryDao;
 import com.rabbit.fundservice.entity.MyFundPosition;
 import com.rabbit.fundservice.utils.JsonManager;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -31,10 +34,17 @@ public class PositionService {
   }
 
   public MapResponse del(JacksonCriteria criteria) {
-    return null;
+    MapResponse response = new MapResponse();
+    JsonNode jsonNode = criteria.getCriteria().get("items");
+    ArrayList<String> fundIds = JsonManager.toObject(jsonNode, ArrayList.class, String.class);
+    repositoryDao.delPositionList(fundIds);
+    return response;
   }
 
   public MapResponse query(JacksonCriteria criteria) {
-    return null;
+    MapResponse response = new MapResponse();
+    List<MyFundPosition> positions = repositoryDao.queryPositionList();
+    response.add("items",positions);
+    return response;
   }
 }
