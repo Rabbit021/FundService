@@ -17,6 +17,10 @@ public class MapResponse extends BaseResponse<Map<String, Object>> {
     super.setResult(SUCCESS);
   }
 
+  public MapResponse(String result, String message) {
+    super(result, message);
+  }
+
   public void add(String prop, Object val) {
     if (data == null) {
       data = new HashMap<String, Object>();

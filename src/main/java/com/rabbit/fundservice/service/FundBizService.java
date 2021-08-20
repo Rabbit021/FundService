@@ -1,6 +1,6 @@
 package com.rabbit.fundservice.service;
 
-import com.rabbit.fundservice.dao.IFundItemRepository;
+import com.rabbit.fundservice.dao.MyFundPositionRepository;
 import com.rabbit.fundservice.data.FundMNUniqueInfo;
 import com.rabbit.fundservice.entity.MyFundPosition;
 import java.util.ArrayList;
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class FundBizService {
 
-  private final IFundItemRepository fundItemRepository;
+  private final MyFundPositionRepository fundItemRepository;
   private final SpiderService spiderService;
 
-  public FundBizService(IFundItemRepository fundItemRepository, SpiderService spiderService) {
+  public FundBizService(MyFundPositionRepository fundItemRepository, SpiderService spiderService) {
     this.fundItemRepository = fundItemRepository;
     this.spiderService = spiderService;
   }

@@ -1,5 +1,7 @@
 package com.rabbit.fundservice.dao;
 
+import com.rabbit.fundservice.entity.MyFundPosition;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,12 +13,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class RepositoryDao {
 
-  private IFundItemRepository fundItemRepository;
+  private MyFundPositionRepository myFundPositionRepository;
 
-  public void setFundItemRepository(IFundItemRepository repository) {
-    this.fundItemRepository = repository;
+  @Autowired
+  public void setMyFundPositionRepository(MyFundPositionRepository repository) {
+    this.myFundPositionRepository = repository;
   }
 
-  public void savePosition() {
+  public void savePosition(MyFundPosition position) {
+    myFundPositionRepository.saveAndFlush(position);
   }
 }

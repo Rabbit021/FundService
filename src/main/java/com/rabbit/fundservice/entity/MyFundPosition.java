@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 /**
  * @author wangheng
@@ -12,7 +13,6 @@ import lombok.Data;
  */
 @Data
 @Entity
-@IdClass(MyFundPosition.class)
 public class MyFundPosition implements Serializable {
   @Id
   private String fcode; // 代码

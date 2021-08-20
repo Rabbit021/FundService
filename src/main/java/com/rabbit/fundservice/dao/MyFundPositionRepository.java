@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * @author wangheng
  */
 @Repository
-public interface IFundItemRepository extends JpaRepository<MyFundPosition, String> {
+public interface MyFundPositionRepository extends JpaRepository<MyFundPosition, String> {
 
 }

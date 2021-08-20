@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
 public class JsonManager {
 
   private final static ObjectMapper defaultMapper;
-//  private final static Logger logger = LoggerFactory.getLogger(JsonManager.class);
 
   static {
     defaultMapper = new ObjectMapper();
