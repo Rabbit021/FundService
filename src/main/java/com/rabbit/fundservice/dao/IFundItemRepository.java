@@ -1,6 +1,6 @@
 package com.rabbit.fundservice.dao;
 
-import com.rabbit.fundservice.entity.FundItem;
+import com.rabbit.fundservice.entity.MyFundPosition;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * @author wangheng
  */
 @Repository
-public interface IFundItemRepository extends JpaRepository<FundItem, String> {
+public interface IFundItemRepository extends JpaRepository<MyFundPosition, String> {
 
 }

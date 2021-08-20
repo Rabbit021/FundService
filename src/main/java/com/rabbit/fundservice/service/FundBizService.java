@@ -2,7 +2,7 @@ package com.rabbit.fundservice.service;
 
 import com.rabbit.fundservice.dao.IFundItemRepository;
 import com.rabbit.fundservice.data.FundMNUniqueInfo;
-import com.rabbit.fundservice.entity.FundItem;
+import com.rabbit.fundservice.entity.MyFundPosition;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -21,14 +21,13 @@ public class FundBizService {
     this.spiderService = spiderService;
   }
 
-  public List<FundItem> getFundItemList() {
+  public List<MyFundPosition> getFundItemList() {
     return fundItemRepository.findAll();
   }
 
-  public void saveFundItem(FundItem item) {
+  public void saveFundItem(MyFundPosition item) {
     fundItemRepository.save(item);
   }
-
   public List<FundMNUniqueInfo> getFundMNUniqueInfoList(String... codes) {
     ArrayList<FundMNUniqueInfo> uniqueInfos = new ArrayList<>();
     for (String code : codes) {
@@ -37,4 +36,6 @@ public class FundBizService {
     }
     return uniqueInfos;
   }
+
+
 }
