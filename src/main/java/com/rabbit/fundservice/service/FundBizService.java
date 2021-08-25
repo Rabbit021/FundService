@@ -11,15 +11,8 @@ import org.springframework.stereotype.Service;
  * @author wangheng 基金业务层
  */
 @Service
-public class FundBizService {
-
-  private final MyFundPositionRepository fundItemRepository;
-  private final SpiderService spiderService;
-
-  public FundBizService(MyFundPositionRepository fundItemRepository, SpiderService spiderService) {
-    this.fundItemRepository = fundItemRepository;
-    this.spiderService = spiderService;
-  }
+public class FundBizService extends BaseService {
+  
 
   public List<MyFundPosition> getFundItemList() {
     return fundItemRepository.findAll();
@@ -28,6 +21,7 @@ public class FundBizService {
   public void saveFundItem(MyFundPosition item) {
     fundItemRepository.save(item);
   }
+
   public List<FundMNUniqueInfo> getFundMNUniqueInfoList(String... codes) {
     ArrayList<FundMNUniqueInfo> uniqueInfos = new ArrayList<>();
     for (String code : codes) {
@@ -36,6 +30,5 @@ public class FundBizService {
     }
     return uniqueInfos;
   }
-
 
 }

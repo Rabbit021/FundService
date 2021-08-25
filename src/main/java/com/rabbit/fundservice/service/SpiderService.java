@@ -15,8 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -25,9 +24,9 @@ import org.springframework.util.MultiValueMap;
  * @author wangheng 数据爬取
  */
 @Component
+@Slf4j
 public class SpiderService {
 
-  private static final Logger logger = LoggerFactory.getLogger(SpiderService.class);
   private final WebManger webManger;
   private final TianTianConfig tianConfig;
 
@@ -129,7 +128,7 @@ public class SpiderService {
       JsonNode datas = JsonManager.toJsonNode(json, "Datas");
       return (T) JsonManager.toObject(datas, type);
     } catch (Exception exception) {
-      logger.error(exception.getMessage());
+      log.error(exception.getMessage());
       return null;
     }
   }

@@ -3,7 +3,6 @@ package com.rabbit.fundservice.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.rabbit.fundservice.common.JacksonCriteria;
 import com.rabbit.fundservice.common.MapResponse;
-import com.rabbit.fundservice.dao.RepositoryDao;
 import com.rabbit.fundservice.entity.MyFundPosition;
 import com.rabbit.fundservice.utils.JsonManager;
 import java.util.ArrayList;
@@ -17,13 +16,7 @@ import org.springframework.stereotype.Service;
  * @date 2021/8/20 13:57 持仓管理服务
  */
 @Service
-public class PositionService {
-
-  private final RepositoryDao repositoryDao;
-
-  public PositionService(RepositoryDao repositoryDao) {
-    this.repositoryDao = repositoryDao;
-  }
+public class PositionService extends BaseService {
 
   public MapResponse save(JacksonCriteria criteria) {
     MapResponse response = new MapResponse();
@@ -44,7 +37,7 @@ public class PositionService {
   public MapResponse query(JacksonCriteria criteria) {
     MapResponse response = new MapResponse();
     List<MyFundPosition> positions = repositoryDao.queryPositionList();
-    response.add("items",positions);
+    response.add("items", positions);
     return response;
   }
 }

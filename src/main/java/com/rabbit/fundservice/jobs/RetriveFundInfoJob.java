@@ -1,9 +1,7 @@
 package com.rabbit.fundservice.jobs;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 /**
@@ -16,6 +14,6 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 public class RetriveFundInfoJob extends QuartzJobBean {
 
   @Override
-  protected void executeInternal(@NotNull JobExecutionContext jobExecutionContext) {
+  protected void executeInternal(JobExecutionContext jobExecutionContext) {
   }
 }

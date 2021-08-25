@@ -1,5 +1,6 @@
 package com.rabbit.fundservice.dao;
 
+import com.querydsl.core.BooleanBuilder;
 import com.rabbit.fundservice.entity.MyFundPosition;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,10 @@ public class RepositoryDao {
   }
 
   public List<MyFundPosition> queryPositionList() {
+
     List<MyFundPosition> all = myFundPositionRepository.findAll();
+    BooleanBuilder builder = new BooleanBuilder();
+    Iterable<MyFundPosition> all1 = myFundPositionRepository.findAll(builder);
     return all;
   }
 }
